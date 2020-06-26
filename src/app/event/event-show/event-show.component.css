@@ -1,0 +1,23 @@
+#event-show {
+  padding: 50px;
+  background: rgb(241, 199, 128);
+  background: linear-gradient(114deg, rgba(241, 199, 128, 0.6404936974789917) 43%, rgba(255, 0, 29, 1) 100%);
+  background-image: url('/assets/images/pexels-photo-blur.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+#event-block {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+#event-block img {
+  width: 80%;
+  padding: 1em;
+}
