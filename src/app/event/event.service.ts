@@ -3,17 +3,35 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Event } from './event';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+
+export interface PaginatedEvents {
+  items: Event[];
+  total: number;
+  page: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _sanitizer: DomSanitizer) {}
 
-  findAll() {
+  findAll(page: number = 1) {
     return this.http
-      .get<Event>(environment.apiUrl + '/events')
-      .pipe(map((data) => data['hydra:member'] as Event[]));
+      .get<PaginatedEvents>(environment.apiUrl + '/events?page=' + page)
+      .pipe(
+        map((data) => {
+          const paginatedEvents: PaginatedEvents = {
+            items: data['hydra:member'] as Event[],
+            total: data['hydra:totalItems'],
+            page: page,
+          };
+
+          return paginatedEvents;
+        })
+      );
   }
 
   find(id: number) {

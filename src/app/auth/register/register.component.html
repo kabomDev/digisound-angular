@@ -1,0 +1,38 @@
+<h1 class="text-center">Inscription</h1>
+<div class="alert alert-info" *ngIf="loading">
+  En cours de chargement...
+</div>
+<div class="alert alert-danger" *ngIf="error">
+  Une erreur est survenu, merci de réessayer plus tard
+</div>
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <!-- <div class="form-group">
+    <input formControlName="fullName" type="text" class="form-control"
+      [class.is-invalid]="getErrorForControl('fullName')" placeholder="Nom complet (ex: John Doe)" />
+    <p class="invalid-feedback" *ngIf="getErrorForControl('fullName')">
+      {{ getErrorForControl('fullName') }}
+    </p>
+  </div> -->
+  <div class="form-group">
+    <input formControlName="email" type="email" class="form-control" [class.is-invalid]="getErrorForControl('email')"
+      placeholder="Adresse email" />
+    <p class="invalid-feedback" *ngIf="getErrorForControl('email')">
+      {{ getErrorForControl('email') }}
+    </p>
+  </div>
+  <div class="form-group">
+    <input formControlName="password" type="password" class="form-control"
+      [class.is-invalid]="getErrorForControl('password')" placeholder="Mot de passe" />
+    <p class="invalid-feedback" *ngIf="getErrorForControl('password')">
+      {{ getErrorForControl('password') }}
+    </p>
+  </div>
+  <div class="form-group">
+    <input formControlName="confirmation" type="password" class="form-control"
+      [class.is-invalid]="getErrorForControl('confirmation')" placeholder="Confirmation" />
+    <p class="invalid-feedback" *ngIf="getErrorForControl('confirmation')">
+      {{ getErrorForControl('confirmation') }}
+    </p>
+  </div>
+  <button class="btn btn-success">Je m'inscris</button>
+</form>

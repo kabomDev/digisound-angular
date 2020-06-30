@@ -1,0 +1,19 @@
+<div>
+  <ul class="pagination">
+    <li class="page-item disabled" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="handlePageClick(currentPage - 1)">
+        &laquo;
+      </button>
+    </li>
+    <li class="page-item" [class.active]="page === currentPage" *ngFor="let page of pages">
+      <button class="page-link" (click)="handlePageClick(page)">
+        {{ page }}
+      </button>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === pages.length">
+      <button class="page-link" (click)="handlePageClick(currentPage + 1)">
+        &raquo;
+      </button>
+    </li>
+  </ul>
+</div>
