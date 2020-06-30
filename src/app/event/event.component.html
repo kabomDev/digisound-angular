@@ -6,8 +6,8 @@
 </div>
 <section id="Event-list" class="container pt-5 pb-5 m-auto">
   <div class="row row-cols-1 row-cols-md-3">
-    <div class="col-sm-12 col-md-4 mb-4" *ngFor="let event of events" routerLink="/events/{{event.id}}">
-      <div class="card m-auto" style="width: 18rem; height: 320px;">
+    <div class="col-md-4 mb-4" *ngFor="let event of events" routerLink="/events/{{event.id}}">
+      <div class="card" style="width: 18rem; height: 320px;">
         <img src="http://localhost:3000/images/{{event.image}}" />
         <div class="card-body">
           <h5 class="card-title">{{event.title}}</h5>

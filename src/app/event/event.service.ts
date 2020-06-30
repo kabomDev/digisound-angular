@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Event } from './event';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 
 export interface PaginatedEvents {
   items: Event[];
@@ -36,5 +35,13 @@ export class EventService {
 
   find(id: number) {
     return this.http.get<Event>(environment.apiUrl + '/events/' + id);
+  }
+
+  getPrice(id: number) {
+    return this.http.get<Event>(environment.apiUrl + '/events/' + id).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
 }

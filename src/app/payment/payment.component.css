@@ -1,0 +1,13 @@
+.payment-box {
+  width: 50%;
+  margin: 5em auto;
+  padding: 2em;
+  text-align: center;
+  border: 2px solid rgb(255, 81, 0);
+  border-radius: 5px;
+}
+
+.payment-box img {
+  width: 250px;
+  margin: 2em;
+}

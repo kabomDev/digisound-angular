@@ -5,6 +5,7 @@ import { Event } from '../event';
 import { map, switchMap } from 'rxjs/operators';
 import { Artist } from 'src/app/artist/artist';
 import { ArtistService } from 'src/app/artist/artist.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-event-show',
@@ -18,8 +19,8 @@ export class EventShowComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private artistService: ArtistService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +40,5 @@ export class EventShowComponent implements OnInit {
         })
       )
       .subscribe((event) => (this.event = event));
-    console.log(event);
   }
 }

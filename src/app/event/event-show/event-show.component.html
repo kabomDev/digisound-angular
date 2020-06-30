@@ -1,21 +1,25 @@
 <section id="event-show">
   <div id="event-block" class="container">
     <a class="pb-2" routerLink="/home">retour à la liste</a>
-    <div p-5>
-      <h1 class="mb-3">{{ event.title }}</h1>
+    <div class="p-5">
+      <h1 class="mb-3">{{event?.title}}</h1>
       <div class=" text-center">
-        <img class="m-2" src="{{event.image}} " alt="{{event.title}}">
+        <img class="m-2" src="http://localhost:3000/images/{{event?.image}}" alt="{{event?.title}}">
       </div>
-      <p>{{ event.description }}</p>
+      <p>{{ event?.description }}</p>
+      <p><strong>Prix: {{event?.price}} </strong></p>
+      <a routerLink="/payment/{{event?.id}}" class="btn btn-primary" *ngIf="auth.isAuthenticated()">Acheter
+        billet(s)</a>
       <hr>
-      <p><strong>ville: {{event.city}}</strong></p>
-      <p class="text-red">date: {{event.startDate| date: "dd-mm-yyyy" }} au {{event.endDate| date: "dd-mm-yyyy"}}</p>
+      <p><strong>ville: {{event?.city}}</strong></p>
+      <p class="text-red">date: {{event?.startDate| date: "dd-MM-yyyy"}} au {{event?.endDate| date: "dd-MM-yyyy"}}</p>
+
       <hr>
       <h2>Les artistes présents à cet évènement</h2>
       <ul>
-        <li *ngFor="let artist of event.artists">
-          <h4>{{artist.name}}</h4>
-          <p>{{artist.description}}</p>
+        <li *ngFor="let artist of event?.artists">
+          <h4>{{artist?.name}}</h4>
+          <p>{{artist?.description}}</p>
         </li>
       </ul>
     </div>

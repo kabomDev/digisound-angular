@@ -6,6 +6,7 @@ export interface Event {
   description: string;
   city: string;
   image?: string;
+  price: number;
   startDate: Date;
   endDate: Date;
   artists?: Artist | string;

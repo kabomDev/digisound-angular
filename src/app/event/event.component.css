@@ -1,5 +1,5 @@
 .jumbotron {
-  background-image: url("src/assets/images/route_homme_guitare_rouge.png");
+  background-image: url("/assets/images/route_homme_guitare_rouge.png");
   height: 500px;
   background-size: cover;
   background-attachment: fixed;

@@ -4,12 +4,16 @@ import { EventComponent } from './event/event.component';
 import { EventShowComponent } from './event/event-show/event-show.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { PaymentComponent } from './payment/payment.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: 'home', component: EventComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'payment/:id', component: PaymentComponent },
+  { path: 'account/:id', component: AccountComponent },
   { path: 'events/:id', component: EventShowComponent },
 ];
 
