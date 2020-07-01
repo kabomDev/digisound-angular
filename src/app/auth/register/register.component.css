@@ -1,0 +1,30 @@
+.register {
+  width: 30%;
+  margin: 5em auto;
+  padding: 3em;
+  border: 2px solid rgb(255, 81, 0);
+  border-radius: 5px;
+}
+
+.btn {
+  border: 1px solid rgb(255, 81, 0);
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background-color: rgb(255, 81, 0);
+  box-shadow: 1px 2px 5px #000;
+  color: #fff;
+  transition: 0.2s;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid rgb(99, 99, 99);
+  border-radius: 0;
+}
+
+input:focus {
+  outline: transparent;
+}

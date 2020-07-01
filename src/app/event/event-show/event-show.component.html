@@ -8,7 +8,7 @@
       </div>
       <p>{{ event?.description }}</p>
       <p><strong>Prix: {{event?.price}} </strong></p>
-      <a routerLink="/payment/{{event?.id}}" class="btn btn-primary" *ngIf="auth.isAuthenticated()">Acheter
+      <a routerLink="/user/payment/{{event?.id}}" class="btn btn-primary" *ngIf="auth.isAuthenticated()">Acheter
         billet(s)</a>
       <hr>
       <p><strong>ville: {{event?.city}}</strong></p>

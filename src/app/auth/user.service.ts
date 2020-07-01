@@ -12,4 +12,16 @@ export class UserService {
   create(user: User) {
     return this.http.post<User>(environment.apiUrl + '/users', user);
   }
+
+  find(id: number) {
+    return this.http.get<User>(environment.apiUrl + 'users/' + id);
+  }
+
+  update(user: User) {
+    return this.http.put<User>(environment.apiUrl + '/users' + user.id, user);
+  }
+
+  delete(id: number) {
+    return this.http.delete<User>(environment.apiUrl + 'users/' + id);
+  }
 }
