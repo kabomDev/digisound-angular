@@ -10,9 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../event/event.service';
 import { Event } from '../../event/event';
 import { AuthService } from '../../auth/auth.service';
-import { User } from 'src/app/auth/user';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
-import { async } from '@angular/core/testing';
+import { TicketService } from '../ticket.service';
+import { Ticket } from '../../user/ticket';
+import { abort } from 'process';
 
 @Component({
   selector: 'app-payment',
@@ -21,15 +21,17 @@ import { async } from '@angular/core/testing';
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
   event: Event;
+  ticket: Ticket;
+
   @Input()
-  amount;
-  @Input()
-  number: 1;
+  quantity = 1;
   buyOn = false;
+  showSuccess = false;
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
+    private ticketService: TicketService,
     public router: Router,
     public auth: AuthService
   ) {}
@@ -47,7 +49,6 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     if (!this.auth.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
-
     window.paypal
       .Buttons({
         style: {
@@ -61,18 +62,24 @@ export class PaymentComponent implements OnInit, AfterViewInit {
             purchase_units: [
               {
                 amount: {
-                  value: this.amount,
+                  value: this.event.price,
                   currency_code: 'EUR',
                 },
               },
             ],
           });
         },
+        advanced: {
+          commit: 'false',
+          disable_funding: 'credit',
+        },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          this.buyOn = true;
-          console.log(order);
-          //rediriger
+          //console.log(order);
+          this.saveInBdd(this.event.id, this.event.price, this.quantity);
+          if (order.status === 'COMPLETED') {
+            this.buyOn = true;
+          }
         },
         onError: (error) => {
           console.log(error);
@@ -82,7 +89,26 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   }
 
   change($event) {
-    this.amount = this.event.price * $event.target.value;
-    console.log(this.amount);
+    this.quantity = $event.target.value;
+    this.event.price = this.event.price * this.quantity;
+  }
+
+  saveInBdd(eventId, price, quantity) {
+    const eventName = eventId;
+    const eventPrice = price;
+    const qty = quantity;
+    const totalAmount = eventPrice * qty;
+
+    this.ticket = {
+      eventName: `/api/events/${eventId}`,
+      price: eventPrice,
+      quantity: qty,
+      amount: totalAmount.toString(),
+    };
+
+    this.ticketService.create(this.ticket).subscribe((ticket) => {
+      //redirection vers le compte de l'utilisateur
+    });
+    (error) => console.log(error);
   }
 }

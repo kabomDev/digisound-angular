@@ -20,7 +20,7 @@
           Bonjour
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="#">mon compte</a>
+          <a class="dropdown-item" href="#">mon compte</a>
           <a class="dropdown-item" *ngIf="auth.isAuthenticated()" (click)="handleLogout()">deconnexion</a>
         </div>
       </li>

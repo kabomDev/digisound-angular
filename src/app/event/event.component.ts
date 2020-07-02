@@ -3,6 +3,7 @@ import { Event } from './event';
 import { EventService } from './event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { UiService } from '../ui/ui.service';
 
 @Component({
   selector: 'app-event',

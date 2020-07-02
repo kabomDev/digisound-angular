@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { TokenInterceptor } from './auth/token.interceptor';
 import { EventComponent } from './event/event.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { EventShowComponent } from './event/event-show/event-show.component';
@@ -38,7 +37,9 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Artist } from 'src/app/artist/artist';
 import { ArtistService } from 'src/app/artist/artist.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { UiService } from 'src/app/ui/ui.service';
 
 @Component({
   selector: 'app-event-show',
