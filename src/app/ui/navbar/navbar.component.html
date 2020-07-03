@@ -17,10 +17,10 @@
       <li class="nav-item dropdown pr-5" *ngIf="auth.isAuthenticated()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Bonjour
+          Bonjour {{ auth.getUser() }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">mon compte</a>
+          <a class="dropdown-item" routerLink="/account/{{auth.getId()}} ">Mon compte</a>
           <a class="dropdown-item" *ngIf="auth.isAuthenticated()" (click)="handleLogout()">deconnexion</a>
         </div>
       </li>

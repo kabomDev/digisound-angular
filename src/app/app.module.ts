@@ -12,9 +12,8 @@ import { PaginationComponent } from './ui/pagination/pagination.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './user/account/account.component';
 import { PaymentComponent } from './user/payment/payment.component';
-import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { UserComponent } from './user/user.component';
     RegisterComponent,
     AccountComponent,
     PaymentComponent,
-    UserComponent,
   ],
   imports: [
     BrowserModule,

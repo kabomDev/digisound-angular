@@ -5,7 +5,7 @@ import { EventShowComponent } from './event/event-show/event-show.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './user/payment/payment.component';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './user/account/account.component';
 
 const routes: Routes = [
   { path: 'home', component: EventComponent },

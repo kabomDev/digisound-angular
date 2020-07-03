@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,12 @@ export class LoginComponent implements OnInit {
 
   submitted = false;
   error = false;
+
   constructor(
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {}
@@ -33,6 +36,11 @@ export class LoginComponent implements OnInit {
 
     this.auth.authenticate(this.form.value).subscribe(
       (user) => {
+        let tokenInfo = this.auth.getDecodeAccessToken(this.auth.getToken());
+        console.log(tokenInfo);
+        window.localStorage.setItem('currentUser', tokenInfo.fullName);
+        window.localStorage.setItem('id', tokenInfo.id);
+
         this.error = false;
         this.router.navigateByUrl('/');
       },
