@@ -6,14 +6,23 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './user/payment/payment.component';
 import { AccountComponent } from './user/account/account.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: EventComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user/payment/:id', component: PaymentComponent },
-  { path: 'account/:id', component: AccountComponent },
+  {
+    path: 'user/payment/:id',
+    component: PaymentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'account/:id',
+    component: AccountComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'events/:id', component: EventShowComponent },
 ];
 

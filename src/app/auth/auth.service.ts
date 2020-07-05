@@ -3,19 +3,42 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
+import { Subject, interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  //on cree un observable booleen
+  authChanged = new Subject<boolean>();
+
+  constructor(private http: HttpClient) {
+    interval(5000).subscribe(() => {
+      this.authChanged.next(this.isAuthenticated());
+    });
+  }
 
   isAuthenticated() {
+    const token = window.localStorage.getItem('token');
+
+    if (!token) {
+      return false;
+    }
+
+    const data = jwt_decode(token);
+
+    //retourne vrai si le token et superieur a la date actuelle
+    return data.exp * 1000 > Date.now();
+
+    //console.log(jwtDecode(token));
     return window.localStorage.getItem('token') !== null;
   }
 
   logout() {
     window.localStorage.removeItem('token');
+    //on previent qu'on est deco
+    this.authChanged.next(false);
   }
 
   authenticate(credentials: Credentials) {
@@ -24,6 +47,8 @@ export class AuthService {
       .pipe(
         tap((data: { token: string }) => {
           window.localStorage.setItem('token', data.token);
+          //on previent qu'on est connecté
+          this.authChanged.next(true);
         })
       );
   }
@@ -46,6 +71,10 @@ export class AuthService {
     } catch (error) {
       return null;
     }
+  }
+
+  deleteToken() {
+    return window.localStorage.setItem('token', '');
   }
 }
 

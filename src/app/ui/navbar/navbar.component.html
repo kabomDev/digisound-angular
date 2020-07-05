@@ -20,7 +20,7 @@
           Bonjour {{ auth.getUser() }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="/account/{{auth.getId()}} ">Mon compte</a>
+          <a class="dropdown-item" routerLink="/account/{{auth.getId()}}">Mon compte</a>
           <a class="dropdown-item" *ngIf="auth.isAuthenticated()" (click)="handleLogout()">deconnexion</a>
         </div>
       </li>

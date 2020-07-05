@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     this.auth.authenticate(this.form.value).subscribe(
       (user) => {
         let tokenInfo = this.auth.getDecodeAccessToken(this.auth.getToken());
-        console.log(tokenInfo);
         window.localStorage.setItem('currentUser', tokenInfo.fullName);
         window.localStorage.setItem('id', tokenInfo.id);
 
@@ -46,6 +45,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.error = true;
+        this.router.navigateByUrl('/');
       }
     );
   }

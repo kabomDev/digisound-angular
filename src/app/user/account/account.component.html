@@ -1,1 +1,19 @@
-<p>account works!</p>
+<main>
+  <div class="container" *ngIf="user">
+    <h1>Bienvenue sur votre profil</h1>
+    <p>nom: {{user.fullName}} </p>
+    <p>email: {{user.email}} </p>
+
+    <div *ngIf="user.tickets">
+      <ul *ngFor="let ticket of user.tickets">
+        <li>evenement: {{ticket.eventName.title}} </li>
+        <li>montant: {{ticket.amount}} </li>
+        <li>quantité: {{ticket.quantity}} </li>
+      </ul>
+    </div>
+    <!-- <div *ngIf="!user.ticket">
+      <p>Vous n'avez pas encore fait d'achat</p>
+    </div> -->
+
+  </div>
+</main>

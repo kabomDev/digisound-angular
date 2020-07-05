@@ -8,9 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  isAuthenticated = false;
+
   constructor(public auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAuthenticated = this.auth.isAuthenticated();
+    this.auth.authChanged.subscribe((value) => {
+      if (!value && this.isAuthenticated) {
+        this.router.navigateByUrl('/login');
+      }
+      this.isAuthenticated = value;
+    });
+  }
 
   handleLogout() {
     this.auth.logout();
