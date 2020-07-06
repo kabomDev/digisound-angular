@@ -1,0 +1,45 @@
+.profil-content {
+  background-image: url('/assets/images/bg-profil.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
+.profil-box {
+  background: linear-gradient(114deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.50) 100%);
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  border-radius: 5px;
+
+}
+
+h1 {
+  color: #fff;
+  padding: 1em;
+}
+
+form {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 2em;
+}
+
+.fa {
+  color: rgb(255, 81, 0);
+}
+
+.form-profil {
+  width: 50%;
+}
+
+.tickets-user-box {
+  width: 50%;
+
+}
+
+.table {
+  background-color: #fff;
+}

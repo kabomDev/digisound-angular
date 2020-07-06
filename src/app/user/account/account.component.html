@@ -1,19 +1,92 @@
 <main>
-  <div class="container" *ngIf="user">
-    <h1>Bienvenue sur votre profil</h1>
-    <p>nom: {{user.fullName}} </p>
-    <p>email: {{user.email}} </p>
+  <div class="profil-content" *ngIf="user">
+    <div class="profil-box d-flex">
+      <div class="form-profil border rounded p-2 m-4" style="width: 40%;">
+        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+          <h2 class="text-center text-white">Vos infos personnelles</h2>
+          <div class="form-group d-flex">
+            <i class="fa fa-user-circle fa-2x pr-2"></i>
 
-    <div *ngIf="user.tickets">
-      <ul *ngFor="let ticket of user.tickets">
-        <li>evenement: {{ticket.eventName.title}} </li>
-        <li>montant: {{ticket.amount}} </li>
-        <li>quantité: {{ticket.quantity}} </li>
-      </ul>
+            <input
+              [class.is-invalid]="
+                submitted && form.controls['fullName'].invalid
+              "
+              type="text"
+              class="form-control"
+              formControlName="fullName"
+              placeholder="nom complet"
+            />
+            <p
+              class="invalid-feedback"
+              *ngIf="submitted && form.controls['fullName'].invalid"
+            >
+              {{ form.controls["fullName"].getError("invalid") }}
+            </p>
+          </div>
+          <div class="form-group d-flex">
+            <i class="fa fa-envelope fa-2x pr-2"></i>
+
+            <input
+              [class.is-invalid]="submitted && form.controls['email'].invalid"
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="adresse email"
+            />
+            <p
+              class="invalid-feedback"
+              *ngIf="submitted && form.controls['fullName'].invalid"
+            >
+              {{ form.controls["email"].getError("invalid") }}
+            </p>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-sm form-control">
+              modifier
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="tickets-user-box p-2 m-4">
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Liste de mes achats
+        </button>
+        <div class="collapse" id="collapseExample">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Evènement</th>
+                <th scope="col">Dates</th>
+                <th scope="col">nombre de billets</th>
+                <th scope="col">montant</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ticket of user.tickets">
+                <th scope="row">{{ ticket.id }}</th>
+                <td>{{ ticket.eventName.title }}</td>
+                <td>
+                  {{ ticket.eventName.startDate | date: "dd-MM-yyyy" }} au
+                  {{ ticket.eventName.endDate | date: "dd-MM-yyyy" }}
+                </td>
+                <td>{{ ticket.quantity }}</td>
+                <td>{{ ticket.amount }}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <!-- <div *ngIf="!user.ticket">
-      <p>Vous n'avez pas encore fait d'achat</p>
-    </div> -->
-
   </div>
 </main>

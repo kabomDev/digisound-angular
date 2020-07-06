@@ -6,7 +6,7 @@
     <h4><span>Prix du billet: </span>{{event?.price| number }} €</h4>
 
     <form>
-      <input type="number" name="number" value="{{quantity}}" (change)="change($event)">
+      <input type="number" name="number" value="{{quantity}}" min="1" (change)="change($event)">
     </form>
 
     <div #paypalRef style="width: 250px;" class="m-auto p-3"></div>

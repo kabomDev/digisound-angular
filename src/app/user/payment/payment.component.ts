@@ -25,6 +25,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   @Input()
   quantity = 1;
+  amount: number;
   buyOn = false;
   showSuccess = false;
 
@@ -62,7 +63,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
             purchase_units: [
               {
                 amount: {
-                  value: this.event.price,
+                  value: this.amount,
                   currency_code: 'EUR',
                 },
               },
@@ -90,7 +91,13 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   change($event) {
     this.quantity = $event.target.value;
-    this.event.price = this.event.price * this.quantity;
+    const totalAmount = (
+      (Math.round(this.event.price * 100) / 100) *
+      this.quantity
+    ).toFixed(2);
+    this.amount = parseFloat(totalAmount);
+    //console.log(this.amount);
+    return this.amount;
   }
 
   saveInBdd(eventId, price, quantity) {

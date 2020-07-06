@@ -1,11 +1,9 @@
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="lead">Venez découvrir tous les évènements du moment partout en France</h1>
-  </div>
+  <h1 class="lead align-middle">Venez découvrir tous les évènements du moment partout en France</h1>
 </div>
 <section id="event-list" *ngIf="events">
-  <div class="row">
-    <div class="card-box col-lg-3" *ngFor="let event of events" routerLink="/events/{{event.id}}">
+  <div class="row ">
+    <div class="card-box col-md-4 col-lg-3" *ngFor="let event of events" routerLink="/events/{{event.id}}">
       <div class="card">
         <img src="http://localhost:3000/images/{{event.image}}" />
         <div class="card-body">
