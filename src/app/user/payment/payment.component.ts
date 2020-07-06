@@ -42,7 +42,10 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     //on recupere les données lié a l'event
-    this.eventService.find(+id).subscribe((event) => (this.event = event));
+    this.eventService.find(+id).subscribe((event) => {
+      this.event = event;
+      return (this.amount = this.event.price);
+    });
   }
 
   @ViewChild('paypalRef', { static: false }) private paypalRef: ElementRef;
@@ -96,20 +99,19 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       this.quantity
     ).toFixed(2);
     this.amount = parseFloat(totalAmount);
-    //console.log(this.amount);
+    console.log(this.amount);
     return this.amount;
   }
 
   saveInBdd(eventId, price, quantity) {
-    const eventName = eventId;
-    const eventPrice = price;
-    const qty = quantity;
-    const totalAmount = eventPrice * qty;
+    // console.log(eventId, price, parseInt(quantity));
+    // abort();
+    const totalAmount = price * quantity;
 
     this.ticket = {
       eventName: `/api/events/${eventId}`,
-      price: eventPrice,
-      quantity: qty,
+      price: price,
+      quantity: parseInt(quantity),
       amount: totalAmount.toString(),
     };
 

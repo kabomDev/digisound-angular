@@ -45,7 +45,7 @@
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Evènement</th>
-                <th scope="col">Dates</th>
+                <th scope="col">Début de l'évènement</th>
                 <th scope="col">nombre de billets</th>
                 <th scope="col">montant</th>
                 <th></th>
@@ -59,7 +59,7 @@
                   {{ ticket.eventName.startDate | date: "dd-MM-yyyy" }}
                 </td>
                 <td>{{ ticket.quantity }}</td>
-                <td>{{ ticket.amount }}</td>
+                <td>{{ ticket.amount }} €</td>
                 <td></td>
               </tr>
             </tbody>
