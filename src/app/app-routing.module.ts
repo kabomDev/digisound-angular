@@ -7,6 +7,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PaymentComponent } from './user/payment/payment.component';
 import { AccountComponent } from './user/account/account.component';
 import { AuthGuard } from './auth/auth.guard';
+import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 
 const routes: Routes = [
   { path: 'home', component: EventComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'events/:id', component: EventShowComponent },
+  { path: 'update-password/:id', component: UpdatePasswordComponent },
 ];
 
 @NgModule({

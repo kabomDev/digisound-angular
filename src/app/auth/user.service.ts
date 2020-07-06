@@ -24,4 +24,11 @@ export class UserService {
   delete(id: number) {
     return this.http.delete<User>(environment.apiUrl + '/users/' + id);
   }
+
+  updatePassword(user: User) {
+    return this.http.put<User>(
+      environment.apiUrl + '/users/update-password',
+      user
+    );
+  }
 }

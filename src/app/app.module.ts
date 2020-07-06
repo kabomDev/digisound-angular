@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './user/account/account.component';
 import { PaymentComponent } from './user/payment/payment.component';
+import { UpdatePasswordComponent } from './user/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaymentComponent } from './user/payment/payment.component';
     RegisterComponent,
     AccountComponent,
     PaymentComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,

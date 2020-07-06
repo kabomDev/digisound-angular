@@ -7,37 +7,20 @@
           <div class="form-group d-flex">
             <i class="fa fa-user-circle fa-2x pr-2"></i>
 
-            <input
-              [class.is-invalid]="
+            <input [class.is-invalid]="
                 submitted && form.controls['fullName'].invalid
-              "
-              type="text"
-              class="form-control"
-              formControlName="fullName"
-              placeholder="nom complet"
-            />
-            <p
-              class="invalid-feedback"
-              *ngIf="submitted && form.controls['fullName'].invalid"
-            >
-              {{ form.controls["fullName"].getError("invalid") }}
+              " type="text" class="form-control" formControlName="fullName" placeholder="nom complet" />
+            <p class="invalid-feedback" *ngIf="submitted && form.controls['fullName'].invalid">
+              {{ form.controls["fullName"].getError("invalid")}}
             </p>
           </div>
           <div class="form-group d-flex">
             <i class="fa fa-envelope fa-2x pr-2"></i>
 
-            <input
-              [class.is-invalid]="submitted && form.controls['email'].invalid"
-              type="email"
-              class="form-control"
-              formControlName="email"
-              placeholder="adresse email"
-            />
-            <p
-              class="invalid-feedback"
-              *ngIf="submitted && form.controls['fullName'].invalid"
-            >
-              {{ form.controls["email"].getError("invalid") }}
+            <input [class.is-invalid]="submitted && form.controls['email'].invalid" type="email" class="form-control"
+              formControlName="email" placeholder="adresse email" />
+            <p class="invalid-feedback" *ngIf="submitted && form.controls['fullName'].invalid">
+              {{ form.controls["email"].getError("invalid")}}
             </p>
           </div>
 
@@ -45,18 +28,15 @@
             <button type="submit" class="btn btn-primary btn-sm form-control">
               modifier
             </button>
+            <div>
+              <a routerLink="/update-password/{{user.id}}">modifier mon mot de passe</a>
+            </div>
           </div>
         </form>
       </div>
       <div class="tickets-user-box p-2 m-4">
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample">
           Liste de mes achats
         </button>
         <div class="collapse" id="collapseExample">
@@ -76,8 +56,7 @@
                 <th scope="row">{{ ticket.id }}</th>
                 <td>{{ ticket.eventName.title }}</td>
                 <td>
-                  {{ ticket.eventName.startDate | date: "dd-MM-yyyy" }} au
-                  {{ ticket.eventName.endDate | date: "dd-MM-yyyy" }}
+                  {{ ticket.eventName.startDate | date: "dd-MM-yyyy" }}
                 </td>
                 <td>{{ ticket.quantity }}</td>
                 <td>{{ ticket.amount }}</td>
