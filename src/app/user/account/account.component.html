@@ -1,51 +1,42 @@
 <main>
   <div class="profil-content" *ngIf="user">
-    <div class="profil-box d-flex">
-      <div class="form-profil border rounded p-2 m-4" style="width: 40%;">
+    <div class="profil-box">
+      <div class="form-profil p-2 m-4" style="width: 40%;">
         <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-          <h2 class="text-center text-white">Vos infos personnelles</h2>
+          <h2 class="text-center">Vos infos personnelles</h2>
           <div class="form-group d-flex">
             <i class="fa fa-user-circle fa-2x pr-2"></i>
 
             <input [class.is-invalid]="
                 submitted && form.controls['fullName'].invalid
               " type="text" class="form-control" formControlName="fullName" placeholder="nom complet" />
-            <p class="invalid-feedback" *ngIf="submitted && form.controls['fullName'].invalid">
-              {{ form.controls["fullName"].getError("invalid")}}
+            <p class="invalid-feedback" *ngIf="getErrorForControl('fullName')">
+              {{ getErrorForControl('fullName') }}
             </p>
           </div>
-          <div class="form-group d-flex">
-            <i class="fa fa-envelope fa-2x pr-2"></i>
-
-            <input [class.is-invalid]="submitted && form.controls['email'].invalid" type="email" class="form-control"
-              formControlName="email" placeholder="adresse email" />
-            <p class="invalid-feedback" *ngIf="submitted && form.controls['fullName'].invalid">
-              {{ form.controls["email"].getError("invalid")}}
-            </p>
-          </div>
-
-          <div class="text-center">
+          <div class="text-center mt-2">
             <button type="submit" class="btn btn-primary btn-sm form-control">
               modifier
             </button>
-            <div>
+            <div class="mt-2">
               <a routerLink="/update-password/{{user.id}}">modifier mon mot de passe</a>
             </div>
           </div>
         </form>
       </div>
+      <hr>
       <div class="tickets-user-box p-2 m-4">
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample">
-          Liste de mes achats
-        </button>
-        <div class="collapse" id="collapseExample">
-          <table class="table">
+        <h3 class="pb-3">Liste de mes achats</h3>
+        <div *ngIf="!user.tickets">
+          <p>Vous n'avez pas encore fait d'achat !</p>
+        </div>
+        <div *ngIf="user.tickets">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Evènement</th>
-                <th scope="col">Début de l'évènement</th>
+                <th scope="col">Date d'achat</th>
                 <th scope="col">nombre de billets</th>
                 <th scope="col">montant</th>
                 <th></th>
@@ -56,7 +47,7 @@
                 <th scope="row">{{ ticket.id }}</th>
                 <td>{{ ticket.eventName.title }}</td>
                 <td>
-                  {{ ticket.eventName.startDate | date: "dd-MM-yyyy" }}
+                  {{ ticket.createdAt | date: "dd-MM-yyyy" }}
                 </td>
                 <td>{{ ticket.quantity }}</td>
                 <td>{{ ticket.amount }} €</td>

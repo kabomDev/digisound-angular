@@ -15,6 +15,13 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './user/account/account.component';
 import { PaymentComponent } from './user/payment/payment.component';
 import { UpdatePasswordComponent } from './user/update-password/update-password.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderModule } from 'ngx-order-pipe';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -36,9 +43,13 @@ import { UpdatePasswordComponent } from './user/update-password/update-password.
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    OrderModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
   ],
   bootstrap: [AppComponent],
 })

@@ -99,7 +99,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       this.quantity
     ).toFixed(2);
     this.amount = parseFloat(totalAmount);
-    console.log(this.amount);
+    //console.log(this.amount);
     return this.amount;
   }
 
@@ -118,6 +118,6 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.ticketService.create(this.ticket).subscribe((ticket) => {
       //redirection vers le compte de l'utilisateur
     });
-    (error) => console.log(error);
+    (error) => error;
   }
 }

@@ -10,13 +10,17 @@
         <div class="event-description">
           <p>{{ event.description }}</p>
           <p><strong>Prix: {{event.price}} €</strong></p>
+          <p class="text-danger" *ngIf="!auth.isAuthenticated()"><small>Veuillez vous inscrire ou vous connecter pour
+              acceder à
+              l'achat*</small></p>
           <a routerLink="/user/payment/{{event?.id}}" class="btn btn-primary" *ngIf="auth.isAuthenticated()">Acheter
             billet(s)</a>
         </div>
       </div>
       <hr>
       <p><strong>ville: {{event?.city}}</strong></p>
-      <p class="text-red">date: {{event.startDate| date: "dd-MM-yyyy"}} au {{event.endDate| date: "dd-MM-yyyy"}}</p>
+      <p class="text-red"><strong>date:</strong> {{event.startDate| date: 'EE d MMM y à H:mm' : 'fr-FR'}} au
+        {{event.endDate| date: 'EE d MMM y à H:mm' : 'fr-FR'}}</p>
 
       <hr>
       <h2 class="pb-2">Les artistes présents à cet évènement</h2>

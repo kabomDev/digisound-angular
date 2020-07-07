@@ -6,8 +6,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { TicketService } from '../ticket.service';
 import { Ticket } from '../ticket';
-import { FormGroup, FormControl } from '@angular/forms';
-import { exit, abort } from 'process';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  EmailValidator,
+} from '@angular/forms';
+import { Toast, ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/auth/auth.service';
+import { abort } from 'process';
 
 @Component({
   selector: 'app-account',
@@ -20,8 +27,8 @@ export class AccountComponent implements OnInit {
   submitted = false;
 
   form = new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl(''),
+    fullName: new FormControl('', [Validators.required]),
+    //email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   constructor(
@@ -29,7 +36,9 @@ export class AccountComponent implements OnInit {
     private ticketService: TicketService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +66,7 @@ export class AccountComponent implements OnInit {
     this.submitted = true;
     this.userService.update({ ...this.form.value, id: this.user.id }).subscribe(
       (user) => {
+        this.toastr.success('La modification a bien été prise en compte');
         this.router.navigateByUrl(`/account/${this.user.id}`);
       },
       (error: HttpErrorResponse) => {
@@ -73,5 +83,9 @@ export class AccountComponent implements OnInit {
         }
       }
     );
+  }
+
+  getErrorForControl(controlName: string) {
+    return this.form.controls[controlName].getError('invalid');
   }
 }

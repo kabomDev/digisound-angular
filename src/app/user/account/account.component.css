@@ -7,7 +7,7 @@
 }
 
 .profil-box {
-  background: linear-gradient(114deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.50) 100%);
+  background: linear-gradient(114deg, rgba(192, 192, 192, 0.6) 20%, rgba(192, 192, 192, 0.8) 100%);
   width: 80%;
   margin: 0 auto;
   padding-top: 3em;
@@ -16,8 +16,8 @@
 
 }
 
-h1 {
-  color: #fff;
+h2 {
+  color: #000;
   padding: 1em;
 }
 
@@ -27,17 +27,18 @@ form {
   padding-bottom: 2em;
 }
 
+.form-profil {
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+hr {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .fa {
   color: rgb(255, 81, 0);
-}
-
-.form-profil {
-  width: 50%;
-}
-
-.tickets-user-box {
-  width: 50%;
-
 }
 
 .table {

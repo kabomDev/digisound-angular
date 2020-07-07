@@ -1,15 +1,21 @@
 <div class="jumbotron jumbotron-fluid">
-  <h1 class="lead align-middle">Venez découvrir tous les évènements du moment partout en France</h1>
+  <h1 class="lead align-middle">
+    Venez découvrir tous les évènements du moment partout en France
+  </h1>
 </div>
 <section id="event-list" *ngIf="events">
-  <div class="row ">
-    <div class="card-box col-md-4 col-lg-3" *ngFor="let event of events" routerLink="/events/{{event.id}}">
+  <div class="row">
+    <div class="card-box col-md-4 col-lg-3" *ngFor="let event of events | orderBy: order"
+      routerLink="/events/{{ event.id }}">
       <div class="card">
-        <img src="http://localhost:3000/images/{{event.image}}" />
+        <img src="http://localhost:3000/images/{{ event.image }}" />
         <div class="card-body">
-          <h5 class="card-title">{{event.title}}</h5>
-          <p class="card-text">
-            {{event.description|slice:1:50}}...,
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text">{{ event.description | slice: 1:50 }}...,</p>
+        </div>
+        <div>
+          <p class="badge badge-warning p-2 m-3">
+            {{ event.startDate | date: 'dd MMM y' }}
           </p>
         </div>
       </div>
@@ -18,5 +24,4 @@
 
   <app-pagination itemsPerPage="6" [currentPage]="currentPage" [items]="totalItems"
     (pageChanged)="handlePageChange($event)"></app-pagination>
-
 </section>

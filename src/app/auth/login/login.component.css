@@ -1,6 +1,15 @@
+.login-box {
+  margin: 0;
+  padding: 5em;
+  background-image: url('/assets/images/bg-register-login.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
 .login {
-  width: 30%;
-  margin: 5em auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 40%;
+  margin: 0 auto;
   padding: 3em;
   border: 2px solid rgb(255, 81, 0);
   border-radius: 5px;
@@ -23,6 +32,7 @@ input {
   border: none;
   border-bottom: 1px solid rgb(99, 99, 99);
   border-radius: 0;
+  background: transparent;
 }
 
 input:focus {

@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/auth/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { abort } from 'process';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-password',
@@ -29,7 +30,8 @@ export class UpdatePasswordComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -54,9 +56,11 @@ export class UpdatePasswordComponent implements OnInit {
       .updatePassword({ ...this.form.value, id: this.user.id })
       .subscribe(
         (user) => {
+          this.toastr.success('Votre mot de passe a bien été modifié');
           this.router.navigateByUrl(`/account/${this.user.id}`);
         },
         (error: HttpErrorResponse) => {
+          console.log(error);
           if (error.status === 400 && error.error.violations) {
             for (const violation of error.error.violations) {
               const nomDuChamp = violation.propertyPath;

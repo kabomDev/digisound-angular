@@ -32,7 +32,7 @@ export class AuthService {
     return data.exp * 1000 > Date.now();
 
     //console.log(jwtDecode(token));
-    return window.localStorage.getItem('token') !== null;
+    //return window.localStorage.getItem('token') !== null;
   }
 
   logout() {

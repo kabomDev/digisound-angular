@@ -14,6 +14,7 @@ export class EventComponent implements OnInit {
   events: Event[] = [];
   totalItems: number;
   currentPage = 1;
+  order: string = 'startDate';
 
   constructor(
     private eventService: EventService,
