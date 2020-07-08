@@ -1,21 +1,15 @@
 <main>
   <div class="profil-content" *ngIf="user">
     <div class="profil-box">
-      <div class="form-profil p-2 m-4" style="width: 40%;">
+      <div class="form-profil p-2 m-4">
         <form [formGroup]="form" (ngSubmit)="handleSubmit()">
           <h2 class="text-center">Vos infos personnelles</h2>
           <div class="form-group d-flex">
             <i class="fa fa-user-circle fa-2x pr-2"></i>
 
-            <input
-              [class.is-invalid]="
+            <input [class.is-invalid]="
                 submitted && form.controls['fullName'].invalid
-              "
-              type="text"
-              class="form-control"
-              formControlName="fullName"
-              placeholder="nom complet"
-            />
+              " type="text" class="form-control" formControlName="fullName" placeholder="nom complet" />
             <p class="invalid-feedback" *ngIf="getErrorForControl('fullName')">
               {{ getErrorForControl("fullName") }}
             </p>
@@ -25,9 +19,7 @@
               modifier
             </button>
             <div class="mt-2">
-              <a routerLink="/update-password/{{ user.id }}"
-                >modifier mon mot de passe</a
-              >
+              <a routerLink="/update-password/{{ user.id }}">modifier mon mot de passe</a>
             </div>
           </div>
         </form>

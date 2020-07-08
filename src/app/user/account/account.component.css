@@ -8,7 +8,6 @@
 
 .profil-box {
   background: linear-gradient(114deg, rgba(192, 192, 192, 0.6) 20%, rgba(192, 192, 192, 0.8) 100%);
-  width: 80%;
   margin: 0 auto;
   padding-top: 3em;
   padding-bottom: 3em;
@@ -22,12 +21,12 @@ h2 {
 }
 
 form {
-  width: 80%;
   margin: auto;
   padding-bottom: 2em;
 }
 
 .form-profil {
+  width: 30%;
   border: 1px solid rgb(31, 31, 31);
   border-radius: 5px;
 }
