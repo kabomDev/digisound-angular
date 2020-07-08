@@ -7,11 +7,17 @@
           <div class="form-group d-flex">
             <i class="fa fa-user-circle fa-2x pr-2"></i>
 
-            <input [class.is-invalid]="
+            <input
+              [class.is-invalid]="
                 submitted && form.controls['fullName'].invalid
-              " type="text" class="form-control" formControlName="fullName" placeholder="nom complet" />
+              "
+              type="text"
+              class="form-control"
+              formControlName="fullName"
+              placeholder="nom complet"
+            />
             <p class="invalid-feedback" *ngIf="getErrorForControl('fullName')">
-              {{ getErrorForControl('fullName') }}
+              {{ getErrorForControl("fullName") }}
             </p>
           </div>
           <div class="text-center mt-2">
@@ -19,18 +25,20 @@
               modifier
             </button>
             <div class="mt-2">
-              <a routerLink="/update-password/{{user.id}}">modifier mon mot de passe</a>
+              <a routerLink="/update-password/{{ user.id }}"
+                >modifier mon mot de passe</a
+              >
             </div>
           </div>
         </form>
       </div>
-      <hr>
+      <hr />
       <div class="tickets-user-box p-2 m-4">
         <h3 class="pb-3">Liste de mes achats</h3>
-        <div *ngIf="!user.tickets">
+        <div *ngIf="user.tickets['length'] == 0">
           <p>Vous n'avez pas encore fait d'achat !</p>
         </div>
-        <div *ngIf="user.tickets">
+        <div *ngIf="user.tickets['length'] != 0">
           <table class="table table-striped">
             <thead>
               <tr>
