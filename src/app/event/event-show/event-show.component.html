@@ -10,9 +10,12 @@
         <div class="event-description">
           <p>{{ event.description }}</p>
           <p><strong>Prix: {{event.price}} €</strong></p>
-          <p class="text-danger" *ngIf="!auth.isAuthenticated()"><small>Veuillez vous inscrire ou vous connecter pour
-              acceder à
-              l'achat*</small></p>
+          <p class="text-danger" *ngIf="!auth.isAuthenticated()">
+            <small>Veuillez vous
+              <a routerLink="/register">inscrire</a> ou vous
+              <a routerLink="/login">connecter</a> pour acceder à l'achat*
+            </small>
+          </p>
           <a routerLink="/user/payment/{{event?.id}}" class="btn btn-primary" *ngIf="auth.isAuthenticated()">Acheter
             billet(s)</a>
         </div>
